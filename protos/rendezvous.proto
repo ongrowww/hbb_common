@@ -98,6 +98,17 @@ message RegisterPk {
   bytes pk = 3;
   string old_id = 4;
   bool no_register_device = 5;
+  bytes ongrow_attestation_nonce = 6;
+}
+
+message OnGrowDeviceAttestation {
+  string id = 1;
+  bytes device_pk = 2;
+  bytes uuid_sha256 = 3;
+  int64 issued_at = 4;
+  int64 expires_at = 5;
+  bytes nonce = 6;
+  bytes signed_payload = 7;
 }
 
 message RegisterPkResponse {
@@ -113,6 +124,7 @@ message RegisterPkResponse {
   }
   Result result = 1;
   int32 keep_alive = 2;
+  OnGrowDeviceAttestation ongrow_device_attestation = 3;
 }
 
 message PunchHoleResponse {
